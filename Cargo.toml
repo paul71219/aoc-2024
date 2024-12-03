@@ -1,0 +1,16 @@
+[package]
+name = "aoc_2024_pauldf"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "day-1"
+test = false
+bench = false
+
+[[bin]]
+name = "day-2"
+test = false
+bench = false
+
+[dependencies]
