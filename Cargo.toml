@@ -14,3 +14,4 @@ test = false
 bench = false
 
 [dependencies]
+regex = "1.11.1"

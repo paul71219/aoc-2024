@@ -5,7 +5,6 @@ use std::str::FromStr;
 fn main() {
     let in_filename = "/Users/pauld/w/aoc-2024/aoc_2024_pauldf/src/bin/day-2/sample.txt";
 
-    
     let s = score_b(read_file(in_filename));
     if s != 4 {
         panic!("unexpected score {}", s);
@@ -20,7 +19,6 @@ fn main() {
 }
 
 fn read_file(filename: &str) -> Vec<Vec<i32>> {
-
     let input = fs::read_to_string(filename).expect("failed to read fine");
     let in_lines = input.split('\n');
 
@@ -36,10 +34,10 @@ fn read_file(filename: &str) -> Vec<Vec<i32>> {
     reports
 }
 
-fn str_i32 (s: &&str) -> Option<i32> {
+fn str_i32(s: &&str) -> Option<i32> {
     match i32::from_str(s) {
         Ok(n) => Some(n),
-        Err(_) => None
+        Err(_) => None,
     }
 }
 
@@ -48,7 +46,7 @@ fn score_a(reports: Vec<Vec<i32>>) -> i32 {
     for report in reports {
         if report.len() > 1 {
             let found_unsafe = report_safe(&report);
-            if ! found_unsafe {
+            if !found_unsafe {
                 safe_count += 1;
             }
         }
@@ -65,7 +63,7 @@ fn score_b(reports: Vec<Vec<i32>>) -> i32 {
                 for i in 0..report.len() {
                     let mut dampened_report = report.clone();
                     dampened_report.remove(i);
-                    if ! report_safe(&dampened_report) {
+                    if !report_safe(&dampened_report) {
                         safe_count += 1;
                         break;
                     }
@@ -82,7 +80,7 @@ fn report_safe(report: &Vec<i32>) -> bool {
     let mut found_unsafe = false;
     let signum = (report[1] - report[0]).signum();
     for i in 1..report.len() {
-        let delta = report[i] - report[i-1];
+        let delta = report[i] - report[i - 1];
         if delta.signum() != signum || delta.abs() > 3 {
             found_unsafe = true;
             break;
