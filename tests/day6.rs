@@ -1,4 +1,4 @@
-use std::char;
+use std::{char, collections::HashSet};
 
 
 
@@ -25,7 +25,7 @@ pub fn score_2(room: &Vec<Vec<char>>) -> i32 {
     let mut room_marked = room.clone();
     patrol_room(&mut room_marked);
 
-    println!("{:?}", room);
+    // println!("{:?}", room);
 
     let mut count = 0;
     for x in 0..room.len() {
@@ -37,7 +37,7 @@ pub fn score_2(room: &Vec<Vec<char>>) -> i32 {
             let mut room_plus_object = room.clone();
             room_plus_object[x][y] = '#';
             if patrol_room(&mut room_plus_object) == None {
-                println!("Guard looped with object at {},{}", x, y);
+                //println!("Guard looped with object at {},{}", x, y);
                 count += 1;
             }
         }
@@ -47,10 +47,15 @@ pub fn score_2(room: &Vec<Vec<char>>) -> i32 {
 }
 
 fn patrol_room(room: &mut Vec<Vec<char>>) -> Option<i32> {
+    let mut guard_history = HashSet::new();
     let mut guard = find_guard(room);
     let mut count = 0;
-    println!("found guard at {:?}", guard);
+    // println!("found guard at {:?}", guard);
     while guard.0 != '!' {
+        if guard_history.contains(&guard) {
+            return None;
+        }
+        guard_history.insert(guard);
         let (_, x, y) = guard;
         if room[x][y] != 'X' {
             room[x][y] = 'X';
