@@ -118,6 +118,8 @@ mod tests {
 
     #[test]
     fn run() {
+        println!("source {}", file!());
+        
         let sample_parsed = parse_input(TEST_IN);
         let real_parsed = parse_input(REAL_IN);
         let sample_1 = score_1(&sample_parsed);

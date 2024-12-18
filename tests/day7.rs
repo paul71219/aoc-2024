@@ -74,6 +74,8 @@ mod tests {
 
     #[test]
     fn run() {
+        println!("source {}", file!());
+
         let sample_parsed = parse_input(TEST_IN);
         let real_parsed = parse_input(REAL_IN);
         let sample_1 = score_1(&sample_parsed);
@@ -82,10 +84,10 @@ mod tests {
         let real_1 = score_1(&real_parsed);
         println!("Part 1: {}", real_1);
 
-        // let sample_2 = score_2(&sample_parsed);
-        // println!("Sample 2: {}", sample_2);
-        // assert_eq!(sample_2, 6);
-        // let real_2 = score_2(&real_parsed);
-        // println!("Part 2: {}", real_2);
+        let sample_2 = score_2(&sample_parsed);
+        println!("Sample 2: {}", sample_2);
+        assert_eq!(sample_2, 11387);
+        let real_2 = score_2(&real_parsed);
+        println!("Part 2: {}", real_2);
     }
 }
